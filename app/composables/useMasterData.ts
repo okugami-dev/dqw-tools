@@ -1,5 +1,3 @@
-import Papa from "papaparse";
-
 export const useMasterData = () => {
   const masterData = useState<Record<string, any[]>>("master-data", () => ({}));
   const isLoaded = useState("master-data-loaded", () => false);
@@ -28,6 +26,8 @@ export const useMasterData = () => {
       const res = await fetch(url);
       if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
       const text = await res.text();
+
+      const Papa = await import("papaparse").then((m) => m.default || m);
 
       return new Promise<void>((resolve) => {
         Papa.parse(text, {

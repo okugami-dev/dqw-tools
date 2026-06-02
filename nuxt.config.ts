@@ -9,4 +9,10 @@ export default defineNuxtConfig({
     },
   },
   devtools: { enabled: true },
+  // サーバービルドのインライン化対象から外す
+  nitro: {
+    externals: {
+      inline: ["papaparse"],
+    },
+  },
 });
